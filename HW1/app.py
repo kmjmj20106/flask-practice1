@@ -8,11 +8,12 @@ def index():
 
 @app.route("/profile")
 def profile():
-  return render_template('profile.html')
+  hobby=["기타치기","클라이밍","음악감상"]
+  return render_template('profile.html',hobby=hobby)
 
-@app.route("/greet/<name1>")
-def greet(name1):
-  return render_template('greet.html',name = name1)
+@app.route("/greet/<name>")
+def greet(name):
+  return render_template('greet.html',name = name)
 
 if __name__ == "__main__":
   app.run(debug=True)
