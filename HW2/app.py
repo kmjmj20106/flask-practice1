@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
-# 간단한 in-memory 데이터 저장소
+
 todos = []
 
 @app.route('/', methods=['GET', 'POST'])
@@ -27,4 +27,4 @@ def toggle(index):
 
 
 if __name__ == '__main__':
-  app.run(debug=True)
+  app.run()
