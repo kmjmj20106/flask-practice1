@@ -1,10 +1,11 @@
-from flask import Flask
-
+from flask import Flask, render_template
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-  return "<p>Hello,World!</p>"
 
-if __name__ == "__main__":
-  app.run(debug=True)
+@app.route('/user/<username>')
+def user_profile(username):
+  return render_template('user_profile.html',username=username, posts=['첫 글', '두 번째 글'])
+
+@app.route('/newuser/<username>')
+def new_user(username):
+  return render_template('user_profile.html',username=username, posts=[])
