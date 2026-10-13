@@ -16,7 +16,8 @@ block content %}
     <span class="done">{{ todo.text }}</span>
     <span class="note">{{ todo.note}}</span>
     {%endif%}"
-    <a href="{{ url_for('delete', id=todo.id) }}">Delete</a>
+    <a href="{{ url_for('delete', id=todo.id) }}">삭제</a>
+    <a href="{{ url_for('edit', id=todo.id) }}">수정</a>
   </li>
   {% endfor %}
 </ul>
