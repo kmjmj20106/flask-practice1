@@ -3,6 +3,7 @@ block content %}
 <h2>Add New Todo</h2>
 <form method="post">
   <input type="text" name="todo" required />
+  <input type="text" name="note" placeholder="설명" />
   <button type="submit">Add Todo</button>
 </form>
 <h2>Todo List</h2>
@@ -11,7 +12,10 @@ block content %}
   {% for todo in todos %}
   <li>
     <a href="{{ url_for('toggle', id=todo.id) }}">완료</a>
-    <span class="{%if todo.done%} done {%endif%}">{{ todo.text }}</span>
+    {%if todo.done%}
+    <span class="done">{{ todo.text }}</span>
+    <span class="note">{{ todo.note}}</span>
+    {%endif%}"
     <a href="{{ url_for('delete', id=todo.id) }}">Delete</a>
   </li>
   {% endfor %}
