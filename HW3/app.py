@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://flask_user:password@localhost/flask_todo_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.db'
 db = SQLAlchemy(app)
 
 class Todo(db.Model):
@@ -43,8 +43,8 @@ def toggle(id):
 def edit(id):
   todo = db.get_or_404(Todo, id)
   if request.method == 'POST':
-    todo.text=request.form('todo')
-    todo.note=request.form('note')
+    todo.text=request.form['todo']
+    todo.note=request.form['note']
     db.session.commit()
     return redirect(url_for('index'))
     # text 와 note 를 고치고 commit 한 뒤 목록으로
