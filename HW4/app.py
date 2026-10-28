@@ -5,9 +5,7 @@ app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///todo.db'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-# 404 에 "did you mean ...?" 라는 긴 안내가 따라붙는 것을 끕니다.
 app.config["ERROR_404_HELP"] = False
-# 한글을 \uc6b0\uc720 처럼 바꾸지 않고 그대로 내보냅니다.
 app.config["RESTX_JSON"] = {"ensure_ascii": False}
 
 db = SQLAlchemy(app)
@@ -52,7 +50,7 @@ api_bp,
 version="1.0",
 title="Todo API",
 description="4장에서 만든 todo 앱의 API",
-doc="/docs", # 문서는 /api/docs 에 열립니다
+doc="/docs", 
 )
 ns = api.namespace("todos", description="할 일 하나하나를 다루는 곳")
 
@@ -74,7 +72,6 @@ class TodoList(Resource):
   @ns.param("done", "true면 완료만, false면 미완료만")
   @ns.marshal_list_with(todo_model)
   def get(self):
-    """할 일을 조회한다. done을 주면 완료 여부로 필터링한다"""
     q = Todo.query
     done = request.args.get("done")
 
@@ -94,7 +91,7 @@ class TodoList(Resource):
     )
     db.session.add(todo)
     db.session.commit()
-    # 만들었으면 201 과 함께 그것이 어디 있는지 Location 에 적어 줍니다.
+
     return todo, 201, {"Location": f"/api/todos/{todo.id}"}
 
 @ns.route("/<int:id>")
