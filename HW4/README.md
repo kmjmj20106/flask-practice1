@@ -7,10 +7,10 @@
 
 ## 실행하는 법
 
-pip install -r requirements.txt
-flask --debug run
-화면 http://127.0.0.1:5000/
-문서 http://127.0.0.1:5000/api/docs
+  pip install -r requirements.txt
+  flask --debug run
+  화면 http://127.0.0.1:5000/
+  문서 http://127.0.0.1:5000/api/docs
 
 ## 화면
 
